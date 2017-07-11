@@ -8,11 +8,23 @@ $(function() {
     win        = $("#win"),//document.getElementById("win"),
     lose       = $("#lose"),//document.getElementById("lose"),
     empate     = $("#draw"),//document.getElementById("draw"),
-    resetar    = $("#reset"),//document.getElementById("reset"),
     back       = $("#jogar"),//document.getElementById("jogar"),
     vitoria    = 0,
     derrota    = 0;
-    
+    elements = {
+        counter: counter, 
+        formPc: formPc, 
+        rock: rock,
+        paper: paper, 
+        scissors: scissors, 
+        choose: choose, 
+        win: win, 
+        lose: lose, 
+        draw: empate, 
+        reset: resetar,
+        back: back
+    };
+ 
 
 var rockObj = new Weapon('rock'),
     paperObj = new Weapon('paper'),
@@ -30,11 +42,9 @@ paperObj.addStrongerWeapon(scissorsObj);
 
 var weaponsObj = [rockObj, paperObj, scissorsObj];
 
-
-resetar.click(function(){
-  formPc.reset();
-  counter.reset();
-});
+var gameplayModel = new GameplayModel(weaponsObj);
+var gameplayView = new GameplayView(gameplayModel, elements);   
+var gameplayController = new GameplayController(gameplayModel, gameplayView);
 
 function winDisappear(){
     choose.css("display", "none");
@@ -68,9 +78,8 @@ function showLose(){
 }
 
 var getWeaponByName = function(weapon) {
-    return weapon.name == this
+    return weapon._name == this
 }
-
 
 var compare = function(weapon) {
 

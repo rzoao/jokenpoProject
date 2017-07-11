@@ -1,12 +1,16 @@
-function Weapon(name) {
+function WeaponModel(name) {  
     this._name = name;
     this._weakerWeapons = new Array();
     this._strongerWeapons = new Array();
+
+    this.itemAdded = new Event(this);
+    this.itemRemoved = new Event(this);
+    this.selectedIndexChanged = new Event(this);
 }
 
-Weapon.prototype = {
-
-    constructor: Weapon,
+WeaponModel.prototype = {  
+   
+    constructor: WeaponModel,
 
     hasWeaponInList: function(list, weapon) {
         var length = list.length;
@@ -32,23 +36,6 @@ Weapon.prototype = {
         return this.hasWeakerWeapon(weapon) || this.hasStrongerWeapon(weapon);
     },
 
-    isWeaponStronger: function(weapon) {
-        var isStronger = this.hasWeakerWeapon(weapon);
-
-        if (!isStronger) {
-            var isWeaker = this.hasStrongerWeapon(weapon);
-
-            if (isWeaker) {
-                return 'Lost';
-            } else {
-                return 'Draw';
-            }
-                
-        } else if (isStronger) {
-            return 'Won';
-        }
-    },
-
     addWeakerWeapon: function(weapon) {
         if (!this.hasWeaponInList(this._weakerWeapons, weapon)) {
             this._weakerWeapons.push(weapon);
@@ -60,4 +47,4 @@ Weapon.prototype = {
             this._strongerWeapons.push(weapon);
         }
     }
-}
+};
