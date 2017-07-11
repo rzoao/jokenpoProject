@@ -34,7 +34,6 @@ var weaponsObj = [rockObj, paperObj, scissorsObj];
 resetar.click(function(){
   formPc.reset();
   counter.reset();
-
 });
 
 function winDisappear(){

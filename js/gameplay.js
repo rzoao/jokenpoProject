@@ -1,9 +1,6 @@
 function Gameplay(availableWeapons) {
     this.availableWeapons = availableWeapons;
-    this.numberOfMatches = 0;
-    this.numberOfWins = 0;
-    this.numberOfLoses = 0;
-    this.numberOfDraws = 0;
+    this.gameMode = "hvsh";
 }
 
 Gameplay.prototype = {
@@ -12,6 +9,14 @@ Gameplay.prototype = {
 
     getRandomWeapon: function() {
         return this.availableWeapons[Math.floor(Math.random()*this.availableWeapons.length)];
-    }
+    },
 
+    compareResults: function(weapon) {
+        
+    }
+    
+}
+
+var getWeaponByName = function(weapon) {
+        return weapon.name == this
 }

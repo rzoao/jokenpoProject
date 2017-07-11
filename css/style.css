@@ -30,14 +30,21 @@ a,a:visited,a:active,a:focus{
   box-shadow: inset 0px 0px 4px 1px black;
   width: 600px;
   min-height:470px;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
-background: linear-gradient(to bottom, #ffffff 0%,#f6f6f6 47%,#ededed 100%); 
+ 
   
   border-radius:4px;
   position:relative;
+}
+
+.options-container {
+  margin:30px auto;
+  box-shadow: inset 0px 0px 4px 1px black;
+  width: 600px;
+  border-radius:4px;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  
 }
 
 h1{

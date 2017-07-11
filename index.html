@@ -2,63 +2,74 @@
     <head>
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="weapon.js"></script>
-        <script src="gameplay.js"></script>
-        <script src="jokenpo.js"></script>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="js/weapon.js"></script>
+        <script src="js/gameplay.js"></script>
+        <script src="js/jokenpo.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
 
     </head>
     <body>
+        <div class="options-container">
+            <h1>JO - KEN - PO</h1>
+
+            <div class="links">
+                <h3>Choose your game:</h3>
+                <button id="human-vs-human">Human vs. Human</button>
+                <button id="human-vs-machine">Human vs. Machine</button>
+                <button id="machine-vs-machine">Machine vs. Machine</button>
+                
+            </div>
+
+        </div>
+
         <div class="container">
         
-        <h1>JO - KEN - PO</h1>
-
-        <div class="links">
-            <h3>Choose your weapon:</h3>
-            <button id="rock">Rock!</button>
-            <button id="paper">Paper!</button>
-            <button id="scissors">Scissors!</button>
-            
-        </div>
-        
-        <div class="computer">
-            <form id="pchoose">
-            <p>
-                <label for="pc">Computer chose:</label>
-                <input type="text" name="pc" value="fuck" readonly>
-            </p>
-            </form>
-        </div>
-        
-        <div class="count">
-            <form id="contar">
-            <label for="won">Wins:</label>
-            <input type="text" name="won" readonly>
-            <label for="lost">Defeats:</label>
-            <input type="text" name="lost" readonly>
-            <label for="draw">Draws:</label>
-            <input type="text" name="draw" readonly>
-            
-            <input type="reset" value="Reset" id="reset">
-            </form>
-        </div>
-        
-        <div id="choose">
-            <div class="escolha">
-            <div id="win">
-                <h2 class="h2">You Won!</h2>
-                <span>Congratulations!</span>
-            </div>  
-        
-            <div id="lose">
-                <h2 class="h2">You lost!<h2>
-                <span>Noob!</span>
+            <div class="links">
+                <h3>Choose your weapon:</h3>
+                <button id="rock">Rock!</button>
+                <button id="paper">Paper!</button>
+                <button id="scissors">Scissors!</button>
+                
             </div>
-            <div id="draw">
-                <h2 class="h2">Draw!</h2>
-                <span> Maybe next time...</span>
-            </div> 
-        </div>
+            
+            <div class="computer">
+                <form id="pchoose">
+                <p>
+                    <label for="pc">Computer chose:</label>
+                    <input type="text" name="pc" value="fuck" readonly>
+                </p>
+                </form>
+            </div>
+            
+            <div class="count">
+                <form id="contar">
+                <label for="won">Wins:</label>
+                <input type="text" name="won" readonly>
+                <label for="lost">Defeats:</label>
+                <input type="text" name="lost" readonly>
+                <label for="draw">Draws:</label>
+                <input type="text" name="draw" readonly>
+                
+                <input type="reset" value="Reset" id="reset">
+                </form>
+            </div>
+            
+            <div id="choose">
+                <div class="escolha">
+                <div id="win">
+                    <h2 class="h2">You Won!</h2>
+                    <span>Congratulations!</span>
+                </div>  
+            
+                <div id="lose">
+                    <h2 class="h2">You lost!<h2>
+                    <span>Noob!</span>
+                </div>
+                <div id="draw">
+                    <h2 class="h2">Draw!</h2>
+                    <span> Maybe next time...</span>
+                </div> 
+            </div>
         </div>
 
     </body>
