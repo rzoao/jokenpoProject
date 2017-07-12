@@ -20,8 +20,7 @@ $(function() {
         choose: choose, 
         win: win, 
         lose: lose, 
-        draw: empate, 
-        reset: resetar,
+        draw: empate,   
         back: back
     };
  
@@ -43,10 +42,11 @@ paperObj.addStrongerWeapon(scissorsObj);
 var weaponsObj = [rockObj, paperObj, scissorsObj];
 
 var gameplayModel = new GameplayModel(weaponsObj);
+gameplayModel._gameMode = 'hvsm';
 var gameplayView = new GameplayView(gameplayModel, elements);   
 var gameplayController = new GameplayController(gameplayModel, gameplayView);
 
-function winDisappear(){
+/*function winDisappear(){
     choose.css("display", "none");
     win.css("display", "none");
     lose.css("display", "none");
@@ -117,7 +117,7 @@ paper.click(function(){
 
 scissors.click(function(){
   compare("scissors");
-});
+});*/
 
                                        
 

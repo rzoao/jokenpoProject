@@ -13,8 +13,10 @@ GameplayModel.prototype = {
     constructor: GameplayModel,
 
     isChoicesSet: function() {
-        if (this._p1Choice && this._p2Choice)
+        if (this._p1Choice && this._p2Choice) {
             this.choicesSet.notify();
+        }
+               
     },
 
     getRandomWeapon: function() {
@@ -27,18 +29,18 @@ GameplayModel.prototype = {
 
     setP1Choice: function(weaponStr) {
         this._p1Choice =  this._availableWeapons.find(getWeaponByName, weaponStr);
+        this.isChoicesSet();
     },
 
     setP2Choice: function(weaponStr) {
         this._p2Choice =  this._availableWeapons.find(getWeaponByName, weaponStr);
+        this.isChoicesSet();
     },
 
     clearChoices: function() {
         this._p1Choice = null;
         this._p2Choice = null;
-    }
-
-    
+    },
 
 }
 

@@ -3,9 +3,6 @@ function WeaponModel(name) {
     this._weakerWeapons = new Array();
     this._strongerWeapons = new Array();
 
-    this.itemAdded = new Event(this);
-    this.itemRemoved = new Event(this);
-    this.selectedIndexChanged = new Event(this);
 }
 
 WeaponModel.prototype = {  

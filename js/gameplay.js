@@ -17,6 +17,3 @@ Gameplay.prototype = {
     
 }
 
-var getWeaponByName = function(weapon) {
-        return weapon.name == this
-}
