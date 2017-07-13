@@ -29,7 +29,7 @@ a,a:visited,a:active,a:focus{
   margin:30px auto;
   box-shadow: inset 0px 0px 4px 1px black;
   width: 600px;
-  min-height:470px;
+  height:170px;
  
   
   border-radius:4px;
@@ -59,7 +59,7 @@ a,a:visited,a:active,a:focus{
 }
 
 h1{
-  font-family: 'Glass Antiqua';
+  font-family: 'Times New Roman';
   text-align: center;
   padding-top: 10px;
   margin-left: 20px;
@@ -90,8 +90,8 @@ h3{
     position:absolute;
     top:50%;
     left:50%;
-    margin-top: -235px;
-    margin-left: -300.5px;
+    margin-top: -50px;
+    margin-left: -295.5px;
 }
 
 #reset,button{
@@ -187,7 +187,6 @@ span{
 .count label{
   font-size:25px;
   letter-spacing:1px;
-  margin-left: 19px;
   font-family: 'Just Another Hand';
 }
 
@@ -213,20 +212,20 @@ span{
   display:none;
 }
 
-.escolha{
+.choice{
   text-align: center;
   position:relative;
   z-index:90;
   background:white;
   margin:auto;
-  margin-top:30%;
+  margin-top:5%;
   width:80%;
   border-radius:5px;
   border:1px solid black;
   padding:10px 0;
 }
 
-.escolha a{
+.choice a{
   display:inline-block;
   padding:5px 20px;
   border:1px solid black;
