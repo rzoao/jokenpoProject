@@ -47,6 +47,17 @@ a,a:visited,a:active,a:focus{
   
 }
 
+.game-score {
+  margin:30px auto;
+  box-shadow: inset 0px 0px 4px 1px black;
+  width: 600px;
+  border-radius:4px;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  
+}
+
 h1{
   font-family: 'Glass Antiqua';
   text-align: center;
@@ -73,6 +84,14 @@ h3{
 
 .links h3{
   padding-bottom: 10px;
+}
+
+#canvas-game {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-top: -235px;
+    margin-left: -300.5px;
 }
 
 #reset,button{

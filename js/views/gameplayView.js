@@ -8,7 +8,7 @@ function GameplayView(model, elements) {
 
     var _self = this;
 
-    this._elements.rock.click(function () {
+    /*this._elements.rock.click(function () {
         _self.p1Choice.notify({
             weapon: 'rock',
             gameMode: _self._model._gameMode
@@ -27,7 +27,7 @@ function GameplayView(model, elements) {
             weapon: 'scissors',
             gameMode: _self._model._gameMode
         });
-    });
+    });*/
 
     this._elements.hvsh.click(function () {
         _self.gameModeChoice.notify({
@@ -48,42 +48,43 @@ function GameplayView(model, elements) {
     });
 
     addEventListener("keydown", function (e) {
-        var weaponStr = undefined
+        var weaponStr = '';
         switch(e.keyCode) {
             case 65:
                 weaponStr = 'rock'
-                _self.p1Choice(weaponStr);
+                _self.p1ChoiceNotify(weaponStr);
                 break;
             case 83:
                 weaponStr = 'paper'
-                _self.p1Choice(weaponStr);
+                _self.p1ChoiceNotify(weaponStr);
                 break;
             case 68:
                 weaponStr = 'scissors'
-                _self.p1Choice(weaponStr);
+                _self.p1ChoiceNotify(weaponStr);
                 break; 
             case 74:
                 weaponStr = 'rock'
-                _self.p2Choice(weaponStr);
+                _self.p2ChoiceNotify(weaponStr);
                 break;        
             case 75:
                 weaponStr = 'paper'
-                _self.p2Choice(weaponStr);
+                _self.p2ChoiceNotify(weaponStr);
                 break;    
             case 76:
                 weaponStr = 'scissors'
-                _self.p2Choice(weaponStr);
+                _self.p2ChoiceNotify(weaponStr);
                 break;    
 
         }
+        _self.p1Choice.notify({
+            weapon: weaponStr,
+            gameMode: _self._model._gameMode
+        });
 
     }, false);
 
 
-    _self.p1Choice.notify({
-            weapon: weaponStr,
-            gameMode: _self._model._gameMode
-        });
+    
 
 }
 
@@ -146,17 +147,17 @@ GameplayView.prototype = {
         this.showResultPopUp(result);
     },
 
-    p1Choice: function(weaponStr) {
+    p1ChoiceNotify: function(weaponStr) {
         this.p1Choice.notify({
             weapon: weaponStr,
-            gameMode: _self._model._gameMode
+            gameMode: this._model._gameMode
         });
     },
 
-    p2Choice: function(weaponStr) {
+    p2ChoiceNotify: function(weaponStr) {
         this.p2Choice.notify({
             weapon: weaponStr,
-            gameMode: _self._model._gameMode
+            gameMode: this._model._gameMode
         });
     },
 

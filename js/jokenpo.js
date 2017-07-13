@@ -31,19 +31,79 @@ $(function() {
     };
  
 
-var rockObj = new WeaponModel('rock', [], []),
-    paperObj = new WeaponModel('paper', [rockObj], []),
-    scissorsObj = new WeaponModel('scissors', [paperObj], [rockObj]),
-    weaponsObj = [rockObj, paperObj, scissorsObj];
+    var rockObj = new WeaponModel('rock', [], []),
+        paperObj = new WeaponModel('paper', [rockObj], []),
+        scissorsObj = new WeaponModel('scissors', [paperObj], [rockObj]),
+        weaponsObj = [rockObj, paperObj, scissorsObj];
 
-rockObj.addWeakerWeapon(scissorsObj);
-rockObj.addStrongerWeapon(paperObj);
+    rockObj.addWeakerWeapon(scissorsObj);
+    rockObj.addStrongerWeapon(paperObj);
 
-paperObj.addStrongerWeapon(scissorsObj);
+    paperObj.addStrongerWeapon(scissorsObj);
 
-var gameplayModel = new GameplayModel(weaponsObj);
-var gameplayView = new GameplayView(gameplayModel, elements);   
-var gameplayController = new GameplayController(gameplayModel, gameplayView);
+    var gameplayModel = new GameplayModel(weaponsObj);
+    var gameplayView = new GameplayView(gameplayModel, elements);   
+    var gameplayController = new GameplayController(gameplayModel, gameplayView);
+
+
+
+
+    // Create the canvas
+    var canvas = $("#canvas-game")[0];
+    var ctx = canvas.getContext("2d");
+    canvas.width = 600;
+    canvas.height = 470;
+
+    // Background image
+    var bgReady = false;
+    var bgImage = new Image();
+    bgImage.onload = function () {
+        bgReady = true;
+    };
+    bgImage.src = "images/background.gif";
+
+    // Game objects
+    var p1 = {  
+        x: 0,
+        y: 0
+    };
+    var p2 = {
+        x: 0,
+        y: 0
+    };
+
+    
+    var render = function () {
+        if (bgReady) {
+            ctx.drawImage(bgImage, 0, 0);
+        }
+
+
+
+    };
+
+    // Update game objects
+    var update = function (modifier) {
+       
+    };
+
+    // The main game loop
+    var main = function () {
+        var now = Date.now();
+        var delta = now - then;
+
+        update(delta / 1000);
+        render();
+
+        then = now;
+
+        // Request to do this again ASAP
+        requestAnimationFrame(main);
+    };
+
+    // Let's play this game!
+    var then = Date.now();
+    main();
 
 })
 
