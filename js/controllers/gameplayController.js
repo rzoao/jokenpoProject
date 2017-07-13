@@ -4,18 +4,18 @@ function GameplayController(model, view) {
 
     this.winnerResult = new Event(this);
 
-    var _this = this;
+    var _self = this;
 
     this._view.p1Choice.attach(function (sender, args) {
-        _this.updateP1Choice(args.weapon);
-
-        if (args.gameMode == 'hvsm' || args.gameMode == 'mvsm') {
-            _this.updateP2Choice(_this._model.getRandomWeapon()._name);
-        }
+        _self.tryToUpdateChoices(args.weapon, args.gameMode);
     });
     
     this._model.choicesSet.attach(function() {
-        _this.compareResults();
+        _self.compareResults();
+    })
+
+    this._view.gameModeChoice.attach(function(sender, args) {
+        _self.startGame(args.gameMode);
     })
 
 }
@@ -44,6 +44,42 @@ GameplayController.prototype = {
 
     updateP2Choice: function(weaponStr) {
         this._model.setP2Choice(weaponStr);
+    },
+
+    setGameMode: function(gameMode) {
+        this._model.setGameMode(gameMode); 
+    },
+
+    startGame: function(gameMode) {
+        this.setGameMode(gameMode);
+
+        switch(gameMode) {
+            case 'hvsh':
+                //code block
+                break;
+            case 'hvsm':
+                //code block
+                break;
+            case 'mvsm':
+            var _self = this;
+                setTimeout(function() {
+                    _self.updateP1Choice(_self._model.getRandomWeapon()._name);
+                    _self.updateP2Choice(_self._model.getRandomWeapon()._name);
+                }
+                , 3000);
+                break;
+        }
+    },
+
+    tryToUpdateChoices: function(weapon, gameMode) {
+        if (gameMode != 'hvsm' && gameMode != 'hvsh')
+            return
+            
+        this.updateP1Choice(weapon);
+
+        if (gameMode == 'hvsm') {
+            this.updateP2Choice(this._model.getRandomWeapon()._name);
+        }
     }
 
 }

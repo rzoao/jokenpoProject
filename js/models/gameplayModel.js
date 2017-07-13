@@ -2,7 +2,7 @@ function GameplayModel (availableWeapons) {
     this._availableWeapons = availableWeapons;
     this._p1Choice = null;
     this._p2Choice = null;
-    this._gameMode = "";
+    this._gameMode = undefined;
 
     this.choicesSet = new Event(this);
 
@@ -41,6 +41,10 @@ GameplayModel.prototype = {
         this._p1Choice = null;
         this._p2Choice = null;
     },
+
+    setGameMode: function(gameMode) {
+        this._gameMode = gameMode;
+    }
 
 }
 

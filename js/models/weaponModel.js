@@ -1,12 +1,11 @@
-function WeaponModel(name) {  
+function WeaponModel(name, weakerWeapons, strongerWeapons) {
     this._name = name;
-    this._weakerWeapons = new Array();
-    this._strongerWeapons = new Array();
-
+    this._weakerWeapons = [].concat(weakerWeapons);
+    this._strongerWeapons = [].concat(strongerWeapons);
 }
 
-WeaponModel.prototype = {  
-   
+WeaponModel.prototype = {
+
     constructor: WeaponModel,
 
     hasWeaponInList: function(list, weapon) {
@@ -33,6 +32,23 @@ WeaponModel.prototype = {
         return this.hasWeakerWeapon(weapon) || this.hasStrongerWeapon(weapon);
     },
 
+    isWeaponStronger: function(weapon) {
+        var isStronger = this.hasWeakerWeapon(weapon);
+
+        if (!isStronger) {
+            var isWeaker = this.hasStrongerWeapon(weapon);
+
+            if (isWeaker) {
+                return 'Lost';
+            } else {
+                return 'Draw';
+            }
+                
+        } else if (isStronger) {
+            return 'Won';
+        }
+    },
+
     addWeakerWeapon: function(weapon) {
         if (!this.hasWeaponInList(this._weakerWeapons, weapon)) {
             this._weakerWeapons.push(weapon);
@@ -44,4 +60,4 @@ WeaponModel.prototype = {
             this._strongerWeapons.push(weapon);
         }
     }
-};
+}

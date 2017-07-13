@@ -3,76 +3,53 @@ function GameplayView(model, elements) {
     this._elements = elements;
 
     this.p1Choice = new Event(this);
-    this.p1ChoosePaper = new Event(this);
-    this.p1ChooseScissors = new Event(this);
+    this.gameModeChoice = new Event(this);
 
-    var _this = this;
+    var _self = this;
 
     this._elements.rock.click(function () {
-        _this.p1Choice.notify({
+        _self.p1Choice.notify({
             weapon: 'rock',
-            gameMode: _this._model._gameMode
+            gameMode: _self._model._gameMode
         });
     });
 
     this._elements.paper.click(function () {
-        _this.p1Choice.notify({
+        _self.p1Choice.notify({
             weapon: 'paper',
-            gameMode: _this._model._gameMode
+            gameMode: _self._model._gameMode
         });
     });
 
     this._elements.scissors.click(function () {
-        _this.p1Choice.notify({
+        _self.p1Choice.notify({
             weapon: 'scissors',
-            gameMode: _this._model._gameMode
+            gameMode: _self._model._gameMode
         });
     });
 
-    // attach model listeners 
-    /*
-    this._model.itemAdded.attach(function () {
-        _this.rebuildList();
-    });
-    this._model.itemRemoved.attach(function () {
-        _this.rebuildList();
-    });*/
-
-    // attach listeners to HTML controls
-    /*
-    this._elements.list.change(function (e) {
-        _this.listModified.notify({
-            index: e.target.selectedIndex
+    this._elements.hvsh.click(function () {
+        _self.gameModeChoice.notify({
+            gameMode: 'hvsh'
         });
     });
-    this._elements.addButton.click(function () {
-        _this.addButtonClicked.notify();
+
+    this._elements.hvsm.click(function () {
+        _self.gameModeChoice.notify({
+            gameMode: 'hvsm'
+        });
     });
-    this._elements.delButton.click(function () {
-        _this.delButtonClicked.notify();
-    });*/
+
+    this._elements.mvsm.click(function () {
+        _self.gameModeChoice.notify({
+            gameMode: 'mvsm'
+        });
+    });
+
+
 }
 
 GameplayView.prototype = {
-
-    /*show: function () {
-        this.rebuildList();
-    },
-
-    rebuildList: function () {
-        var list, items, key;
-
-        list = this._elements.list;
-        list.html('');
-
-        items = this._model.getItems();
-        for (key in items) {
-            if (items.hasOwnProperty(key)) {
-                list.append($('<option>' + items[key] + '</option>'));
-            }
-        }
-        this._model.setSelectedIndex(-1);
-    }*/
 
     setP2Choice: function() {
         this._elements.formPc.find('input[name=pc]').val(this._model._p2Choice.name);
@@ -91,9 +68,9 @@ GameplayView.prototype = {
     },
 
     delay: function(){
-        var _this = this;
+        var _self = this;
         setTimeout(function(){
-            _this.winDisappear()
+            _self.winDisappear()
         },650);
     },
 
