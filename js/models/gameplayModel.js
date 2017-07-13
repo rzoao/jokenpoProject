@@ -3,6 +3,8 @@ function GameplayModel (availableWeapons) {
     this._p1Choice = null;
     this._p2Choice = null;
     this._gameMode = undefined;
+    this._isGameOver = false;
+    this._canDrawImages = false;
 
     this.choicesSet = new Event(this);
 

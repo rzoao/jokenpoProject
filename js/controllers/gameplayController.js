@@ -22,6 +22,10 @@ function GameplayController(model, view) {
         _self.startGame(args.gameMode);
     })
 
+    this._view.gameOverFlowEnded.attach(function(sender, args) {
+        _self.setGameOver(args.isGameOver);
+    })
+
 }
 
 GameplayController.prototype = {
@@ -34,19 +38,23 @@ GameplayController.prototype = {
     },
 
     compareResults: function() {
+        this._model._isGameOver = true;
+        this._model._canDrawImages = true;
 
         var result = this._model._p1Choice.isWeaponStronger(this._model._p2Choice);
-        this._view.showResult(result);
+        this._view.showResult(result, this._model._p1Choice._name, this._model._p2Choice._name);
 
         this.clearWeaponChoices();
 
     },
 
     updateP1Choice: function(weaponStr) {
+        this._view.setPlayerImg('p1', weaponStr);
         this._model.setP1Choice(weaponStr);
     },
 
     updateP2Choice: function(weaponStr) {
+        this._view.setPlayerImg('p2', weaponStr);
         this._model.setP2Choice(weaponStr);
     },
 
@@ -56,13 +64,14 @@ GameplayController.prototype = {
 
     startGame: function(gameMode) {
         this.setGameMode(gameMode);
+        this.clearWeaponChoices();
 
         switch(gameMode) {
             case 'hvsh':
-                //code block
+                
                 break;
             case 'hvsm':
-                //code block
+                
                 break;
             case 'mvsm':
             var _self = this;
@@ -70,7 +79,7 @@ GameplayController.prototype = {
                     _self.updateP1Choice(_self._model.getRandomWeapon()._name);
                     _self.updateP2Choice(_self._model.getRandomWeapon()._name);
                 }
-                , 3000);
+                , 500);
                 break;
         }
     },
@@ -84,6 +93,11 @@ GameplayController.prototype = {
         if (gameMode == 'hvsm') {
             this.updateP2Choice(this._model.getRandomWeapon()._name);
         }
+    },
+
+    setGameOver: function(isGameOver) {
+        this._model._isGameOver = isGameOver;
+        this._model._canDrawImages = false;
     }
 
 }

@@ -1,3 +1,5 @@
+//Observer pattern used to support MVC
+
 function Event(sender) {  
     this._sender = sender;
     this._listeners = [];

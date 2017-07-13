@@ -5,6 +5,7 @@ function GameplayView(model, elements) {
     this.p1Choice = new Event(this);
     this.p2Choice = new Event(this);
     this.gameModeChoice = new Event(this);
+    this.gameOverFlowEnded = new Event(this);
 
     var _self = this;
 
@@ -42,12 +43,16 @@ function GameplayView(model, elements) {
     });
 
     this._elements.mvsm.click(function () {
+        _self.blockButton(_self._elements.mvsm);
         _self.gameModeChoice.notify({
             gameMode: 'mvsm'
         });
     });
 
     addEventListener("keydown", function (e) {
+        if (_self._model._isGameOver)
+            return;
+
         var weaponStr = '';
         switch(e.keyCode) {
             case 65:
@@ -76,44 +81,49 @@ function GameplayView(model, elements) {
                 break;    
 
         }
-        _self.p1Choice.notify({
-            weapon: weaponStr,
-            gameMode: _self._model._gameMode
-        });
-
     }, false);
 
 
-    
 
 }
 
 GameplayView.prototype = {
-
-    setP2Choice: function() {
-        this._elements.formPc.find('input[name=pc]').val(this._model._p2Choice.name);
-    },
 
     updateMatchValues: function(result) {
         var inputValue = this._elements.counter.find('input[name=' + result.toLowerCase() +']').val();
         this._elements.counter.find('input[name=' + result.toLowerCase() +']').val(+inputValue + 1);
     },
 
-    winDisappear: function(){
+    blockButton: function(button) {
+        button.prop('disabled', true);
+    },
+
+    unblockButton: function(button) {
+        button.prop('disabled', false);
+    },
+
+    closePopUp: function(){
         this._elements.choose.css("display", "none");
         this._elements.win.css("display", "none");
         this._elements.lose.css("display", "none");
         this._elements.draw.css("display", "none");
+        this.unblockButton(this._elements.mvsm);
+        this._elements.p1.imgReady = false;
+        this._elements.p2.imgReady = false;
+        
+        this.gameOverFlowEnded.notify({
+            isGameOver: false
+        });
     },
 
     delay: function(){
         var _self = this;
         setTimeout(function(){
-            _self.winDisappear()
+            _self.closePopUp()
         },650);
     },
 
-    showWin: function(){
+    showP1Win: function(){
         this._elements.choose.css("display","block");
         this._elements.win.css("display","block");
         this.delay();
@@ -125,7 +135,7 @@ GameplayView.prototype = {
         this.delay();
     },
 
-    showLose: function(){
+    showP2Win: function(){
         this._elements.choose.css("display","block");
         this._elements.lose.css("display","block");
         this.delay();
@@ -133,18 +143,25 @@ GameplayView.prototype = {
 
     showResultPopUp: function (result) {
         if (result == "Won") {
-            this.showWin();
+            this.showP1Win();
         } else if (result == "Lost") {
-            this.showLose();
+            this.showP2Win();
         } else if (result == "Draw") {
             this.showDraw();
         }
     },
 
-    showResult: function(result) {
-        this.setP2Choice();
-        this.updateMatchValues(result);
-        this.showResultPopUp(result);
+    showResult: function(result, p1WeaponStr, p2WeaponStr) {
+        var _self = this;
+        setTimeout(function() {
+            _self.updateMatchValues(result);
+            _self.showResultPopUp(result);
+        }, 1500);
+        
+    },
+
+    setPlayerImg: function(playerStr, weaponStr) {
+        this._elements[playerStr].setImage('images/' + weaponStr + '_' + playerStr + '.png');
     },
 
     p1ChoiceNotify: function(weaponStr) {
@@ -159,6 +176,6 @@ GameplayView.prototype = {
             weapon: weaponStr,
             gameMode: this._model._gameMode
         });
-    },
+    }
 
 };
