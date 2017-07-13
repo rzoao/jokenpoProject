@@ -3,6 +3,7 @@ function GameplayView(model, elements) {
     this._elements = elements;
 
     this.p1Choice = new Event(this);
+    this.p2Choice = new Event(this);
     this.gameModeChoice = new Event(this);
 
     var _self = this;
@@ -46,6 +47,43 @@ function GameplayView(model, elements) {
         });
     });
 
+    addEventListener("keydown", function (e) {
+        var weaponStr = undefined
+        switch(e.keyCode) {
+            case 65:
+                weaponStr = 'rock'
+                _self.p1Choice(weaponStr);
+                break;
+            case 83:
+                weaponStr = 'paper'
+                _self.p1Choice(weaponStr);
+                break;
+            case 68:
+                weaponStr = 'scissors'
+                _self.p1Choice(weaponStr);
+                break; 
+            case 74:
+                weaponStr = 'rock'
+                _self.p2Choice(weaponStr);
+                break;        
+            case 75:
+                weaponStr = 'paper'
+                _self.p2Choice(weaponStr);
+                break;    
+            case 76:
+                weaponStr = 'scissors'
+                _self.p2Choice(weaponStr);
+                break;    
+
+        }
+
+    }, false);
+
+
+    _self.p1Choice.notify({
+            weapon: weaponStr,
+            gameMode: _self._model._gameMode
+        });
 
 }
 
@@ -106,6 +144,20 @@ GameplayView.prototype = {
         this.setP2Choice();
         this.updateMatchValues(result);
         this.showResultPopUp(result);
-    }
+    },
+
+    p1Choice: function(weaponStr) {
+        this.p1Choice.notify({
+            weapon: weaponStr,
+            gameMode: _self._model._gameMode
+        });
+    },
+
+    p2Choice: function(weaponStr) {
+        this.p2Choice.notify({
+            weapon: weaponStr,
+            gameMode: _self._model._gameMode
+        });
+    },
 
 };

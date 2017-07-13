@@ -9,6 +9,10 @@ function GameplayController(model, view) {
     this._view.p1Choice.attach(function (sender, args) {
         _self.tryToUpdateChoices(args.weapon, args.gameMode);
     });
+
+    this._view.p2Choice.attach(function (sender, args) {
+        _self.updateP2Choice(args.weapon);
+    });
     
     this._model.choicesSet.attach(function() {
         _self.compareResults();
